@@ -22,14 +22,12 @@ export default class AddReplies extends React.Component{
 
   render(){
     return (
-      <div className='single-block-item-style'>
-        <form className='form' onSubmit={this.processTopicReply.bind(this)}>
-          <input className='form__input' type='text'
+        <form onSubmit={this.processTopicReply.bind(this)}>
+          <input type='text'
                  name='formInputReplyAttribute'
                 placeholder='Witty reply'/>
-          <button className='button'>Add Reply</button>
+          <button>Add Reply</button>
         </form>
-      </div>
     );
   }
 };

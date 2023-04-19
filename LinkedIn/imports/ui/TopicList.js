@@ -30,8 +30,8 @@ export default class TopicList extends React.Component {
   render(){
     return (
       <>
-        <FlipMove delay={500}
-                  leaveAnimation='accordionVertical'
+        <FlipMove delay={250}
+                  leaveAnimation='fade'
                   maintainContainerHeight={true} >
           {this.renderAllPosts()}
         </FlipMove>

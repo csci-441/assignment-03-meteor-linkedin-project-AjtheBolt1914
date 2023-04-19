@@ -7,8 +7,7 @@ export default class RenderReplies extends React.Component{
 
   render(){
     let single_item_class_name =
-                `single-block-item-style
-                single-block-item-style--position-${this.props.reply_prop_obj.rank}`;
+                `${this.props.reply_prop_obj.rank}`;
     let possible_link = this.props.reply_prop_obj.reply_topic;
     if (this.props.reply_prop_obj.reply_topic.includes('http')){
       possible_link = <a href={this.props.reply_prop_obj.reply_topic}>{this.props.reply_prop_obj.reply_topic}</a>;
@@ -16,21 +15,21 @@ export default class RenderReplies extends React.Component{
     return (
       <>
         <div key={this.props.reply_prop_obj._id} className={single_item_class_name}>
-          <div className='post'>
+          <div>
             <div>
-              <h3 className='post__topic'>{possible_link}</h3>
-              <p className='post__stats'>{this.props.reply_prop_obj.total_reply_votes} total vote[s] <br />
+              <h3> {possible_link}</h3>
+              <p>{this.props.reply_prop_obj.total_reply_votes} total vote[s] <br />
               {this.props.reply_prop_obj.reply_up_votes} up <br /> {this.props.reply_prop_obj.reply_down_votes} down
                 </p> 
             </div>
-            <div className='post__actions'>
-              <button className='button button--round' onClick={() => {  
+            <div>
+              <button onClick={() => {  
                 Topic_Replies_Collection_Access.update({_id: this.props.reply_prop_obj._id},
                   {$inc: {reply_up_votes: 1, total_reply_votes: 1}})}}>+1</button>
-              <button className='button button--round' onClick={() => {
+              <button onClick={() => {
                 Topic_Replies_Collection_Access.update({_id: this.props.reply_prop_obj._id},
                   {$inc: {reply_down_votes: 1, total_reply_votes: 1}})}}>-1</button>
-              <button className='button button--round' onClick={() => {
+              <button onClick={() => {
                 Topic_Replies_Collection_Access.remove({_id: this.props.reply_prop_obj._id})
               }}>X</button>
             </div>

@@ -23,12 +23,10 @@ export default class AddTopics extends React.Component{
 
   render(){
     return (
-      <div className='single-block-item-style'>
-        <form className='form' onSubmit={this.processFormData.bind(this)}>
-          <input className='form__input' type='text' name='formInputNameAttribute' placeholder='Topic Name'/>
-          <button className='button'>Add Topic</button>
+        <form onSubmit={this.processFormData.bind(this)}>
+          <input type='text' name='formInputNameAttribute' placeholder='Topic Name'/>
+          <button>Add Topic</button>
         </form>
-      </div>
     );
   }
 };
