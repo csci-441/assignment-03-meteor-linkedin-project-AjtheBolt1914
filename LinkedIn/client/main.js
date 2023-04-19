@@ -1,22 +1,22 @@
 import React from 'react';
-import ReactDom from 'react-dom';
+import ReactDOM from 'react-dom';
 import {Meteor} from 'meteor/meteor';
-import {Tracker} from 'meteor/tracker';
+import {UP_Collection_Access}
+        from './../imports/api/LinkedIn_posts.js';
+import App from './../imports/ui/App.js';
+
+Meteor.startup(() =>  {
+
+  Tracker.autorun(() => {
+    let allPostsInDB = UP_Collection_Access.find({},
+                                              {sort: {date_added: -1}}).fetch();
+    let title = 'LinkedIn';
 
 
-
-
-Meteor.startup(() => {
-  Tracker.autorun(() => { 
-
-    let title = 'Welcome to LinkedIn';
-
-    let jsx = (
-      <div>
-        <h1>{title}</h1>
-      </div>
-    );
-    ReactDom.render(jsx, document.getElementById('react-target'));
+    ReactDOM.render(<App
+        passedPropTitle={title}
+        passedPropAllPosts={allPostsInDB}
+      />, document.getElementById('content'));
   });
-
 });
+
